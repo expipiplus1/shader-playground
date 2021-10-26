@@ -19,6 +19,7 @@ Shader Playground is a website for exploring shader compilers.
 * [HLSLcc](https://github.com/Unity-Technologies/HLSLcc)
 * [HLSLParser](https://github.com/Thekla/hlslparser)
 * [Mali offline compiler](https://developer.arm.com/products/software-development-tools/graphics-development-tools/mali-offline-compiler)
+* [Metal](https://developer.apple.com/documentation/metal/shader_authoring)
 * [Naga](https://github.com/gfx-rs/naga)
 * [PowerVR compiler](https://community.imgtec.com/developers/powervr/tools/pvrshadereditor/)
 * [Radon GPU Analyzer (RGA)](https://github.com/GPUOpen-Tools/RGA)
