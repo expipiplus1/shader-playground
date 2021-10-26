@@ -1,5 +1,9 @@
 # Changelog
 
+## 2021-10-26
+
+* Added Metal compiler 2.0
+
 ## 2021-10-13
 
 * Added Naga compiler v0.7.0 (#101)
