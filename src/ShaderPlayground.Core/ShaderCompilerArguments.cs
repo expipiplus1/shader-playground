@@ -11,15 +11,19 @@ namespace ShaderPlayground.Core
 
         private Dictionary<string, ShaderCompilerParameter> _parameters;
 
+        public readonly IShaderCompiler Compiler;
+
         public ShaderCompilerArguments(IShaderCompiler compiler)
             : base()
         {
+            Compiler = compiler;
             Initialize(compiler);
         }
 
         public ShaderCompilerArguments(IShaderCompiler compiler, IDictionary<string, string> dictionary)
             : base(dictionary)
         {
+            Compiler = compiler;
             Initialize(compiler);
         }
 

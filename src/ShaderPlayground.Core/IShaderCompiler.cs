@@ -1,4 +1,6 @@
-﻿namespace ShaderPlayground.Core
+﻿using System.Collections.Generic;
+
+namespace ShaderPlayground.Core
 {
     public interface IShaderCompiler
     {
@@ -11,6 +13,6 @@
         
         ShaderCompilerParameter[] Parameters { get; }
 
-        ShaderCompilerResult Compile(ShaderCode shaderCode, ShaderCompilerArguments arguments);
+        ShaderCompilerResult Compile(ShaderCode shaderCode, ShaderCompilerArguments arguments, List<ShaderCompilerArguments> previousCompilerArguments);
     }
 }

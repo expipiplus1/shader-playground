@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using ShaderPlayground.Core.Util;
 
 namespace ShaderPlayground.Core.Compilers.Clspv
@@ -19,7 +20,7 @@ namespace ShaderPlayground.Core.Compilers.Clspv
             CommonParameters.CreateOutputParameter(new[] { LanguageNames.SpirV }),
         };
 
-        public ShaderCompilerResult Compile(ShaderCode shaderCode, ShaderCompilerArguments arguments)
+        public ShaderCompilerResult Compile(ShaderCode shaderCode, ShaderCompilerArguments arguments, List<ShaderCompilerArguments> previousCompilerArguments)
         {
             using (var tempFile = TempFile.FromShaderCode(shaderCode))
             {

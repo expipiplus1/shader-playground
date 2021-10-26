@@ -10,6 +10,7 @@
         public const string Glslang = "glslang";
         public const string IntelShaderAnalyzer = "intelshaderanalyzer";
         public const string Metal = "metal";
+        public const string MetalLib = "metallib";
         public const string Naga = "naga";
         public const string PowerVR = "powervr";
         public const string Rga = "rga";

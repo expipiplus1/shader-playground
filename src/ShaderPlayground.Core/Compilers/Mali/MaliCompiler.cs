@@ -68,7 +68,7 @@ namespace ShaderPlayground.Core.Compilers.Mali
             "vulkan",
         };
 
-        public ShaderCompilerResult Compile(ShaderCode shaderCode, ShaderCompilerArguments arguments)
+        public ShaderCompilerResult Compile(ShaderCode shaderCode, ShaderCompilerArguments arguments, List<ShaderCompilerArguments> previousCompilerArguments)
         {
             var stage = GetStageFlag(arguments.GetString("ShaderStage"));
             var core = arguments.GetString("Core");

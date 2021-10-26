@@ -1,4 +1,5 @@
-﻿using ShaderPlayground.Core.Util;
+﻿using System.Collections.Generic;
+using ShaderPlayground.Core.Util;
 
 namespace ShaderPlayground.Core.Compilers.Miniz
 {
@@ -32,7 +33,7 @@ namespace ShaderPlayground.Core.Compilers.Miniz
             "9"
         };
 
-        public ShaderCompilerResult Compile(ShaderCode shaderCode, ShaderCompilerArguments arguments)
+        public ShaderCompilerResult Compile(ShaderCode shaderCode, ShaderCompilerArguments arguments, List<ShaderCompilerArguments> previousCompilerArguments)
         {
             var outputLanguage = arguments.GetString(CommonParameters.OutputLanguageParameterName);
 

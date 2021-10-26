@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using ShaderPlayground.Core.Util;
 
 namespace ShaderPlayground.Core.Compilers.HlslParser
@@ -26,7 +27,7 @@ namespace ShaderPlayground.Core.Compilers.HlslParser
             "Fragment"
         };
 
-        public ShaderCompilerResult Compile(ShaderCode shaderCode, ShaderCompilerArguments arguments)
+        public ShaderCompilerResult Compile(ShaderCode shaderCode, ShaderCompilerArguments arguments, List<ShaderCompilerArguments> previousCompilerArguments)
         {
             var outputLanguage = arguments.GetString(CommonParameters.OutputLanguageParameterName);
 

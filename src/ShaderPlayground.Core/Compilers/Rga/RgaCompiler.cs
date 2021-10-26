@@ -92,7 +92,7 @@ namespace ShaderPlayground.Core.Compilers.Rga
             TargetVulkan
         };
 
-        public ShaderCompilerResult Compile(ShaderCode shaderCode, ShaderCompilerArguments arguments)
+        public ShaderCompilerResult Compile(ShaderCode shaderCode, ShaderCompilerArguments arguments, List<ShaderCompilerArguments> previousCompilerArguments)
         {
             var version = Version.Parse(arguments.GetString(CommonParameters.VersionParameterName));
 

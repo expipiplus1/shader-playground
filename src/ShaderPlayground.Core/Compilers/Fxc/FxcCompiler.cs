@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using ShaderPlayground.Core.Util;
 
 namespace ShaderPlayground.Core.Compilers.Fxc
@@ -71,7 +72,7 @@ namespace ShaderPlayground.Core.Compilers.Fxc
             "3"
         };
 
-        public ShaderCompilerResult Compile(ShaderCode shaderCode, ShaderCompilerArguments arguments)
+        public ShaderCompilerResult Compile(ShaderCode shaderCode, ShaderCompilerArguments arguments, List<ShaderCompilerArguments> previousCompilerArguments)
         {
             var entryPoint = arguments.GetString("EntryPoint");
             var targetProfile = arguments.GetString("TargetProfile");

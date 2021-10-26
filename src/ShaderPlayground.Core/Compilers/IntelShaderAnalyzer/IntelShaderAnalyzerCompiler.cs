@@ -59,7 +59,7 @@ namespace ShaderPlayground.Core.Compilers.IntelShaderAnalyzer
             "vs_5_1"
         };
 
-        public ShaderCompilerResult Compile(ShaderCode shaderCode, ShaderCompilerArguments arguments)
+        public ShaderCompilerResult Compile(ShaderCode shaderCode, ShaderCompilerArguments arguments, List<ShaderCompilerArguments> previousCompilerArguments)
         {
             var args = string.Empty;
 

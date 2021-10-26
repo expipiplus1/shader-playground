@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using ShaderPlayground.Core.Util;
 
@@ -20,7 +21,7 @@ namespace ShaderPlayground.Core.Compilers.Metal
             CommonParameters.CreateOutputParameter(new[] { LanguageNames.MetalIR }),
         };
 
-        private static readonly string[] MetalVersions =
+        internal static readonly string[] MetalVersions =
         {
             "macos-metal1.0",
             "macos-metal1.1",
@@ -40,42 +41,7 @@ namespace ShaderPlayground.Core.Compilers.Metal
             "ios-metal2.4",
         };
 
-        // Corresponds to MetalVersions just above.
-        private static readonly VersionMetadata[] PlatformVersions =
-        {
-            new VersionMetadata("10.11.0", "macosx", "macosx"),
-            new VersionMetadata("10.11.0", "macosx", "macosx"),
-            new VersionMetadata("10.12.0", "macosx", "macosx"),
-            new VersionMetadata("10.13.0", "macosx", "macosx"),
-            new VersionMetadata("10.14.0", "macosx", "macosx"),
-            new VersionMetadata("10.15.0", "macosx", "macosx"),
-            new VersionMetadata("11.0.0", "macosx", "macosx"),
-            new VersionMetadata("12.0.0", "macosx", "macosx"),
-            new VersionMetadata("8.0.0", "iphoneos", "ios"),
-            new VersionMetadata("9.0.0", "iphoneos", "ios"),
-            new VersionMetadata("10.0.0", "iphoneos", "ios"),
-            new VersionMetadata("11.0.0", "iphoneos", "ios"),
-            new VersionMetadata("12.0.0", "iphoneos", "ios"),
-            new VersionMetadata("13.0.0", "iphoneos", "ios"),
-            new VersionMetadata("14.0.0", "iphoneos", "ios"),
-            new VersionMetadata("15.0.0", "iphoneos", "ios"),
-        };
-
-        private readonly struct VersionMetadata
-        {
-            public readonly string VersionNumber;
-            public readonly string PlatformShort;
-            public readonly string PlatformFull;
-
-            public VersionMetadata(string versionNumber, string platformShort, string platformFull)
-            {
-                VersionNumber = versionNumber;
-                PlatformShort = platformShort;
-                PlatformFull = platformFull;
-            }
-        }
-
-        public ShaderCompilerResult Compile(ShaderCode shaderCode, ShaderCompilerArguments arguments)
+        public ShaderCompilerResult Compile(ShaderCode shaderCode, ShaderCompilerArguments arguments, List<ShaderCompilerArguments> previousCompilerArguments)
         {
             using var tempFile = TempFile.FromShaderCode(shaderCode);
 
@@ -102,28 +68,11 @@ namespace ShaderPlayground.Core.Compilers.Metal
             {
                 var binaryOutputPath = $"{tempFile.FilePath}.air";
 
-                // This is the command line we actually want to run:
-                // $"metal.exe -std={arguments.GetString("MetalVersion")} -I \"{includePath}\" -o \"{binaryOutputPath}\" \"{tempFile.FilePath}\"",
-                // But because that writes the .air file to a temp folder, it doesn't work on Azure. So I used "-v" to find out the "real"
-                // command lines used internally by the front-end driver, and that's what we use here.
-
-                var intermediateOutputPath = $"{tempFile.FilePath}-intermediate.air";
-
-                var versionMetadata = PlatformVersions[Array.IndexOf(MetalVersions, metalVersion)];
-
                 ProcessHelper.Run(
                     CommonParameters.GetBinaryPath("metal", arguments, "metal.exe"),
-                    $"-cc1 -triple air64-apple-{versionMetadata.PlatformShort}{versionMetadata.VersionNumber} -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -Wuninitialized -Wunused-variable -Wunused-value -Wunused-function -Wsign-compare -Wreturn-type -Wmissing-braces -finclude-default-header -emit-llvm-bc -disable-free -disable-llvm-verifier -discard-value-names -main-file-name {Path.GetFileName(tempFile.FilePath)} -mrelocation-model static -mthread-model posix -mdisable-fp-elim -fno-strict-return -menable-no-infs -menable-no-nans -menable-unsafe-fp-math -fno-signed-zeros -mreassociate -freciprocal-math -fno-trapping-math -ffp-contract=fast -ffast-math -ffinite-math-only -no-integrated-as -faligned-alloc-unavailable -dwarf-column-info -debugger-tuning=lldb -v -I \"{includePath}\" -Wmtl-shader-return-type -Werror=mtl-shader-return-type -std={metalVersion} -fno-dwarf-directory-asm -fno-autolink -fdebug-compilation-dir \"{CommonParameters.GetBinaryPath("metal", arguments)}\" -ferror-limit 19 -fmessage-length 316 -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fobjc-runtime=macosx -fdiagnostics-show-option -fcolor-diagnostics -o \"{intermediateOutputPath}\" -x metal \"{tempFile.FilePath}\"",
+                    $"-std={arguments.GetString("MetalVersion")} -I \"{includePath}\" -o \"{binaryOutputPath}\" -c \"{tempFile.FilePath}\"",
                     out _,
                     out _);
-
-                ProcessHelper.Run(
-                    CommonParameters.GetBinaryPath("metal", arguments, "air-lld.exe"),
-                    $"-arch air64 -{versionMetadata.PlatformFull}_version_min {versionMetadata.VersionNumber} -o \"{binaryOutputPath}\" \"{intermediateOutputPath}\"",
-                    out _,
-                    out _);
-
-                FileHelper.DeleteIfExists(intermediateOutputPath);
 
                 binaryOutput = FileHelper.ReadAllBytesIfExists(binaryOutputPath);
 

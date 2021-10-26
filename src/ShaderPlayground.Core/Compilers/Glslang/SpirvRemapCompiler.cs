@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using ShaderPlayground.Core.Util;
 
 namespace ShaderPlayground.Core.Compilers.Glslang
@@ -43,7 +44,7 @@ namespace ShaderPlayground.Core.Compilers.Glslang
             "loadstore"
         };
 
-        public ShaderCompilerResult Compile(ShaderCode shaderCode, ShaderCompilerArguments arguments)
+        public ShaderCompilerResult Compile(ShaderCode shaderCode, ShaderCompilerArguments arguments, List<ShaderCompilerArguments> previousCompilerArguments)
         {
             var outputLanguage = arguments.GetString(CommonParameters.OutputLanguageParameterName);
 

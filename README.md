@@ -64,12 +64,9 @@ Shader Playground is supported by these amazing people. Their sponsorship allows
 
 * [Aras Pranckevičius](https://aras-p.info/)
 <!-- -->
-* [Rys Sommefeldt](https://rys.sommefeldt.com/)
 * [Neil Henning](http://www.duskborn.com)
 <!-- -->
-* [Dimitri Diakopoulos](http://www.dimitridiakopoulos.com/)
 * [Laura Reznikov](https://twitter.com/theanimator)
-* [Nathan Reed](http://reedbeta.com/)
 * [Aisha Brown](https://twitter.com/aishization)
 * [Sean Cooper](https://kornnerstudios.blogspot.com/)
 * [Ken Hu](https://silvesthu.github.io/)

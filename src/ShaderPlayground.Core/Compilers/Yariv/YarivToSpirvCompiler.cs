@@ -1,4 +1,5 @@
-﻿using ShaderPlayground.Core.Util;
+﻿using System.Collections.Generic;
+using ShaderPlayground.Core.Util;
 
 namespace ShaderPlayground.Core.Compilers.Yariv
 {
@@ -17,7 +18,7 @@ namespace ShaderPlayground.Core.Compilers.Yariv
             CommonParameters.CreateOutputParameter(new[] { LanguageNames.SpirV })
         };
 
-        public ShaderCompilerResult Compile(ShaderCode shaderCode, ShaderCompilerArguments arguments)
+        public ShaderCompilerResult Compile(ShaderCode shaderCode, ShaderCompilerArguments arguments, List<ShaderCompilerArguments> previousCompilerArguments)
         {
             var outputLanguage = arguments.GetString(CommonParameters.OutputLanguageParameterName);
 

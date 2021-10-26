@@ -60,6 +60,7 @@ namespace ShaderPlayground.Core
             new LzmaCompiler(),
             new MaliCompiler(),
             new MetalCompiler(),
+            new MetalLibCompiler(),
             new MinizCompiler(),
             new NagaCompiler(),
             new PowerVRCompiler(),
@@ -105,6 +106,7 @@ namespace ShaderPlayground.Core
 
             var eachShaderCode = shaderCode;
             var results = new List<ShaderCompilerResult>();
+            var previousArguments = new List<ShaderCompilerArguments>();
 
             var error = false;
 
@@ -127,7 +129,9 @@ namespace ShaderPlayground.Core
                     compiler,
                     compilationStep.Arguments);
 
-                var result = compiler.Compile(eachShaderCode, arguments);
+                var result = compiler.Compile(eachShaderCode, arguments, previousArguments);
+
+                previousArguments.Add(arguments);
 
                 if (!result.Success)
                 {

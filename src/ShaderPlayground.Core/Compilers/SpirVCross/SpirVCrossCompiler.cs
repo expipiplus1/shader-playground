@@ -1,4 +1,5 @@
-﻿using ShaderPlayground.Core.Util;
+﻿using System.Collections.Generic;
+using ShaderPlayground.Core.Util;
 
 namespace ShaderPlayground.Core.Compilers.SpirVCross
 {
@@ -30,7 +31,7 @@ namespace ShaderPlayground.Core.Compilers.SpirVCross
             "60"
         };
 
-        public ShaderCompilerResult Compile(ShaderCode shaderCode, ShaderCompilerArguments arguments)
+        public ShaderCompilerResult Compile(ShaderCode shaderCode, ShaderCompilerArguments arguments, List<ShaderCompilerArguments> previousCompilerArguments)
         {
             var args = arguments.GetString(CommonParameters.ExtraOptionsParameter.Name);
 

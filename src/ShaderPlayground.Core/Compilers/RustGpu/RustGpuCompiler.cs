@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using ShaderPlayground.Core.Util;
@@ -20,7 +21,7 @@ namespace ShaderPlayground.Core.Compilers.RustGpu
             CommonParameters.CreateOutputParameter(new[] { LanguageNames.SpirV })
         };
 
-        public ShaderCompilerResult Compile(ShaderCode shaderCode, ShaderCompilerArguments arguments)
+        public ShaderCompilerResult Compile(ShaderCode shaderCode, ShaderCompilerArguments arguments, List<ShaderCompilerArguments> previousCompilerArguments)
         {
             // Do some basic validation for "securiy".
             var shaderText = shaderCode.Text;

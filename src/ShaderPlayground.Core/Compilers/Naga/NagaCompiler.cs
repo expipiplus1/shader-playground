@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using ShaderPlayground.Core.Util;
 
@@ -27,7 +28,7 @@ namespace ShaderPlayground.Core.Compilers.Naga
             "comp"
         };
 
-        public ShaderCompilerResult Compile(ShaderCode shaderCode, ShaderCompilerArguments arguments)
+        public ShaderCompilerResult Compile(ShaderCode shaderCode, ShaderCompilerArguments arguments, List<ShaderCompilerArguments> previousCompilerArguments)
         {
             var shaderStage = arguments.GetString(CommonParameters.GlslShaderStage.Name);
 

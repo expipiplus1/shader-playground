@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using ShaderPlayground.Core.Util;
 
 namespace ShaderPlayground.Core.Compilers.Slang
@@ -121,7 +122,7 @@ namespace ShaderPlayground.Core.Compilers.Slang
             "glsl_compute"
         };
 
-        public ShaderCompilerResult Compile(ShaderCode shaderCode, ShaderCompilerArguments arguments)
+        public ShaderCompilerResult Compile(ShaderCode shaderCode, ShaderCompilerArguments arguments, List<ShaderCompilerArguments> previousCompilerArguments)
         {
             var outputLanguage = arguments.GetString(CommonParameters.OutputLanguageParameterName);
 

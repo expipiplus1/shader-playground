@@ -46,7 +46,7 @@ namespace ShaderPlayground.Core.Compilers.Tint
             "fragment",
         };
 
-        public ShaderCompilerResult Compile(ShaderCode shaderCode, ShaderCompilerArguments arguments)
+        public ShaderCompilerResult Compile(ShaderCode shaderCode, ShaderCompilerArguments arguments, List<ShaderCompilerArguments> previousCompilerArguments)
         {
             var stage = arguments.GetString(ShaderStageName);
             var entryPoint = arguments.GetString(EntryPointName);

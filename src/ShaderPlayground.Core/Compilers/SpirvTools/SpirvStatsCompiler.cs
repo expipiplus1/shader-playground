@@ -1,4 +1,5 @@
-﻿using ShaderPlayground.Core.Util;
+﻿using System.Collections.Generic;
+using ShaderPlayground.Core.Util;
 
 namespace ShaderPlayground.Core.Compilers.SpirvTools
 {
@@ -16,7 +17,7 @@ namespace ShaderPlayground.Core.Compilers.SpirvTools
             CommonParameters.CreateVersionParameter("spirv-tools-legacy")
         };
 
-        public ShaderCompilerResult Compile(ShaderCode shaderCode, ShaderCompilerArguments arguments)
+        public ShaderCompilerResult Compile(ShaderCode shaderCode, ShaderCompilerArguments arguments, List<ShaderCompilerArguments> previousCompilerArguments)
         {
             using (var tempFile = TempFile.FromShaderCode(shaderCode))
             {

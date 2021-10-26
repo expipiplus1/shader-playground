@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using ShaderPlayground.Core.Util;
 
@@ -19,7 +20,7 @@ namespace ShaderPlayground.Core.Compilers.PowerVR
             CommonParameters.GlslShaderStage
         };
 
-        public ShaderCompilerResult Compile(ShaderCode shaderCode, ShaderCompilerArguments arguments)
+        public ShaderCompilerResult Compile(ShaderCode shaderCode, ShaderCompilerArguments arguments, List<ShaderCompilerArguments> previousCompilerArguments)
         {
             string shaderType;
             switch (arguments.GetString("ShaderStage"))

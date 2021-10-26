@@ -1,4 +1,5 @@
-﻿using ShaderPlayground.Core.Util;
+﻿using System.Collections.Generic;
+using ShaderPlayground.Core.Util;
 
 namespace ShaderPlayground.Core.Compilers.HlslCc
 {
@@ -17,7 +18,7 @@ namespace ShaderPlayground.Core.Compilers.HlslCc
             CommonParameters.CreateOutputParameter(new[] { LanguageNames.Glsl, LanguageNames.Metal })
         };
 
-        public ShaderCompilerResult Compile(ShaderCode shaderCode, ShaderCompilerArguments arguments)
+        public ShaderCompilerResult Compile(ShaderCode shaderCode, ShaderCompilerArguments arguments, List<ShaderCompilerArguments> previousCompilerArguments)
         {
             var outputLanguage = arguments.GetString(CommonParameters.OutputLanguageParameterName);
 

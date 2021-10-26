@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using ShaderPlayground.Core.Util;
 
 namespace ShaderPlayground.Core.Compilers.Hlsl2Glsl
@@ -36,7 +37,7 @@ namespace ShaderPlayground.Core.Compilers.Hlsl2Glsl
             "GLSL ES 300"  // ETargetGLSL_ES_300
         };
 
-        public ShaderCompilerResult Compile(ShaderCode shaderCode, ShaderCompilerArguments arguments)
+        public ShaderCompilerResult Compile(ShaderCode shaderCode, ShaderCompilerArguments arguments, List<ShaderCompilerArguments> previousCompilerArguments)
         {
             var outputLanguage = arguments.GetString(CommonParameters.OutputLanguageParameterName);
 

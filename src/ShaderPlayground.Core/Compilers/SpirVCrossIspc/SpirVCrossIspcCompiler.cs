@@ -1,4 +1,5 @@
-﻿using ShaderPlayground.Core.Util;
+﻿using System.Collections.Generic;
+using ShaderPlayground.Core.Util;
 
 namespace ShaderPlayground.Core.Compilers.SpirVCrossIspc
 {
@@ -18,7 +19,7 @@ namespace ShaderPlayground.Core.Compilers.SpirVCrossIspc
             CommonParameters.CreateOutputParameter(new[] { LanguageNames.Ispc })
         };
 
-        public ShaderCompilerResult Compile(ShaderCode shaderCode, ShaderCompilerArguments arguments)
+        public ShaderCompilerResult Compile(ShaderCode shaderCode, ShaderCompilerArguments arguments, List<ShaderCompilerArguments> previousCompilerArguments)
         {
             var args = "--ispc";
 
