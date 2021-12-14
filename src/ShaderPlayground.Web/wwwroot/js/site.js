@@ -448,17 +448,23 @@
                                 break;
 
                             default:
-                                outputEditor = CodeMirror(outputContainerDiv, {
-                                    value: output.value || "",
-                                    mode: getCodeMirrorMode(output.language),
-                                    theme: codeMirrorTheme,
-                                    matchBrackets: true,
-                                    readOnly: true
-                                });
-
-                                if (currentScrollY !== null) {
-                                    outputEditor.scrollTo(null, currentScrollY);
-                                    currentScrollY = null;
+                                if (output.language) {
+                                    // No error occured and language information exists, use CodeMirror for good formatting
+                                    outputEditor = CodeMirror(outputContainerDiv, {
+                                        value: output.value || "",
+                                        mode: getCodeMirrorMode(output.language),
+                                        theme: codeMirrorTheme,
+                                        matchBrackets: true,
+                                        readOnly: true
+                                    });
+                                    if (currentScrollY !== null) {
+                                        outputEditor.scrollTo(null, currentScrollY);
+                                        currentScrollY = null;
+                                    }
+                                } else {
+                                    // An error occured, allow for coloring of ansi error output
+                                    // Even if an error didn't occur, there's no language so CodeMirror will struggle
+                                    outputContainerDiv.innerHTML = "<pre>" + (new AnsiUp()).ansi_to_html(output.value || "") + "</pre>";
                                 }
                                 break;
                         }
