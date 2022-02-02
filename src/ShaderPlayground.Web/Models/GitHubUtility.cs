@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 using Octokit;
 using ShaderPlayground.Core;
 
@@ -9,14 +9,6 @@ namespace ShaderPlayground.Web.Models
 {
     internal static class GitHubUtility
     {
-        private static readonly JsonSerializerSettings SerializerSettings;
-
-        static GitHubUtility()
-        {
-            SerializerSettings = new JsonSerializerSettings();
-            SerializerSettings.Formatting = Formatting.Indented;
-        }
-
         private static GitHubClient CreateClient()
         {
             var token = Environment.GetEnvironmentVariable("GITHUB_TOKEN");
@@ -31,11 +23,11 @@ namespace ShaderPlayground.Web.Models
         {
             var language = Compiler.AllLanguages.First(x => x.Name == request.Language);
 
-            var configJson = JsonConvert.SerializeObject(new ConfigJsonModel
+            var configJson = JsonSerializer.Serialize(new ConfigJsonModel
             {
                 Language = request.Language,
                 CompilationSteps = request.CompilationSteps
-            }, SerializerSettings);
+            }, new JsonSerializerOptions(JsonSerializerDefaults.Web));
 
             var client = CreateClient();
 
