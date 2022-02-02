@@ -2,6 +2,7 @@
 
 ## 2022-02-02
 
+* Added RGA 2.6 (which enables DX12 offline mode)
 * Upgraded website to ASP.NET Core 6.0
 
 ## 2021-10-26

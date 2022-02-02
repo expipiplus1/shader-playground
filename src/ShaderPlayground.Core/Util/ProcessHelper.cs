@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 using System.Text;
 
 namespace ShaderPlayground.Core.Util
@@ -11,6 +12,7 @@ namespace ShaderPlayground.Core.Util
             var processStartInfo = new ProcessStartInfo
             {
                 FileName = fileName,
+                WorkingDirectory = Path.GetDirectoryName(fileName),
                 Arguments = arguments,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,

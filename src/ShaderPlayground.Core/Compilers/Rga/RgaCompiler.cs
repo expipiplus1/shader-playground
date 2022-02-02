@@ -13,7 +13,7 @@ namespace ShaderPlayground.Core.Compilers.Rga
         static RgaCompiler()
         {
             ProcessHelper.Run(
-                Path.Combine(AppContext.BaseDirectory, "Binaries", "rga", "2.4.1", "rga.exe"),
+                Path.Combine(AppContext.BaseDirectory, "Binaries", "rga", "2.6", "rga.exe"),
                 "-s dx11 --list-asics",
                 out var stdOutput,
                 out var _);
@@ -126,7 +126,7 @@ namespace ShaderPlayground.Core.Compilers.Rga
                                 {
                                     throw new InvalidOperationException("DXR mode is only supported on RGA 2.4.1 and above");
                                 }
-                                args += " -s dxr";
+                                args += " -s dxr --offline";
                                 args += $" --export {entryPoint}";
                                 args += $" --hlsl \"{tempFile.FilePath}\"";
                                 break;
@@ -142,7 +142,7 @@ namespace ShaderPlayground.Core.Compilers.Rga
                                 {
                                     throw new InvalidOperationException("DX12 mode is only supported on RGA 2.2 and above");
                                 }
-                                args += " -s dx12";
+                                args += " -s dx12 --offline";
                                 var stage = targetProfile.Substring(0, 2);
                                 args += $" --{stage}-model {targetProfile} --{stage}-entry {entryPoint}";
                                 args += $" --all-hlsl \"{tempFile.FilePath}\"";
@@ -199,6 +199,7 @@ namespace ShaderPlayground.Core.Compilers.Rga
                                     case "cs":
                                         switch (extension)
                                         {
+                                            case "il":
                                             case "isa":
                                                 shaderStage = "comp";
                                                 break;
