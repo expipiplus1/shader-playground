@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <UserSecretsId>0d767b89-f281-4b11-a100-c06e6f634c5e</UserSecretsId>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <ApplicationInsightsResourceId>/subscriptions/890b998c-6372-4369-8f70-cb6709a640d4/resourcegroups/DefaultResourceGroup/providers/microsoft.insights/components/tryhlsl</ApplicationInsightsResourceId>
@@ -12,7 +12,6 @@
   <ItemGroup>
     <PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.15.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.8" />
     <PackageReference Include="Microsoft.Web.LibraryManager.Build" Version="2.1.76" />
     <PackageReference Include="Octokit" Version="0.48.0" />
   </ItemGroup>

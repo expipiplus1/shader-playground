@@ -1,6 +1,5 @@
 ﻿using System;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
+using System.Text.Json.Serialization;
 
 namespace ShaderPlayground.Core
 {
@@ -9,7 +8,7 @@ namespace ShaderPlayground.Core
         public string Name { get; }
         public string DisplayName { get; }
 
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(JsonStringEnumConverter))]
         public ShaderCompilerParameterType ParameterType { get; }
 
         public string[] Options { get; }

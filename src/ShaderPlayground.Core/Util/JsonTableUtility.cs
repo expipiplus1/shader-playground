@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json;
 
 namespace ShaderPlayground.Core.Util
 {
@@ -11,7 +11,7 @@ namespace ShaderPlayground.Core.Util
 
         public string ToJson()
         {
-            return JsonConvert.SerializeObject(this);
+            return JsonSerializer.Serialize(this);
         }
     }
 

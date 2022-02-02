@@ -1,5 +1,9 @@
 # Changelog
 
+## 2022-02-02
+
+* Upgraded website to ASP.NET Core 6.0
+
 ## 2021-10-26
 
 * Added Metal compiler 2.0

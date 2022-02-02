@@ -22,8 +22,7 @@ namespace ShaderPlayground.Web
                 .AddMvc(options =>
                 {
                     options.EnableEndpointRouting = false;
-                })
-                .AddNewtonsoftJson();
+                });
 
             services.AddApplicationInsightsTelemetry();
         }

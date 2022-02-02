@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 using Newtonsoft.Json;
 using Octokit;
 using ShaderPlayground.Core;
@@ -14,7 +13,7 @@ namespace ShaderPlayground.Web.Models
 
         static GitHubUtility()
         {
-            SerializerSettings = JsonSerializerSettingsProvider.CreateSerializerSettings();
+            SerializerSettings = new JsonSerializerSettings();
             SerializerSettings.Formatting = Formatting.Indented;
         }
 
