@@ -97,7 +97,11 @@ namespace ShaderPlayground.Core.Compilers.Dxc
         private static readonly string[] SpirvTargetOptions =
         {
             "vulkan1.0",
-            "vulkan1.1"
+            "vulkan1.1",
+            "vulkan1.1spirv1.4",
+            "vulkan1.2",
+            "vulkan1.3",
+            "universal1.5",
         };
 
         private static readonly string[] Enable16BitTypesFilters =
