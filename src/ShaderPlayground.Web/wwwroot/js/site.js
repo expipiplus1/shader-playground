@@ -901,7 +901,7 @@ $(function () {
                                 } else {
                                     // An error occured, allow for coloring of ansi error output
                                     // Even if an error didn't occur, there's no language so CodeMirror will struggle
-                                    outputContainerDiv.innerHTML = "<pre>" + (new AnsiUp()).ansi_to_html(output.value || "") + "</pre>";
+                                    outputContainerDiv.innerHTML = "<pre style=\"margin:0;\">" + (new AnsiUp()).ansi_to_html(output.value || "") + "</pre>";
                                 }
                                 break;
                         }
