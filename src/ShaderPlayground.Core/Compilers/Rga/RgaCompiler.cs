@@ -12,19 +12,29 @@ namespace ShaderPlayground.Core.Compilers.Rga
     {
         static RgaCompiler()
         {
-            ProcessHelper.Run(
-                Path.Combine(AppContext.BaseDirectory, "Binaries", "rga", "2.6", "rga.exe"),
-                "-s dx11 --list-asics",
-                out var stdOutput,
-                out var _);
+            var asicOptions = new List<string>();
 
-            // Extract ASICs from output.
-            var coreRegex = new Regex(@"\n([a-zA-Z0-9 ]+) \(");
-            var matches = coreRegex.Matches(stdOutput);
+            foreach (var versionDirectory in Directory.GetDirectories(Path.Combine(AppContext.BaseDirectory, "Binaries", "rga")))
+            {
+                ProcessHelper.Run(
+                    Path.Combine(versionDirectory, "rga.exe"),
+                    "-s dx11 --list-asics",
+                    out var stdOutput,
+                    out var _);
 
-            AsicOptions = matches
-                .Cast<Match>()
-                .Select(x => x.Groups[1].Value)
+                // Extract ASICs from output.
+                var coreRegex = new Regex(@"\n([a-zA-Z0-9 ]+) \(");
+                var matches = coreRegex.Matches(stdOutput);
+
+                asicOptions.AddRange(matches
+                    .Cast<Match>()
+                    .Select(x => x.Groups[1].Value));
+            }
+
+            AsicOptions = 
+                asicOptions
+                .Distinct()
+                .OrderBy(x => x)
                 .ToArray();
         }
 
