@@ -5,6 +5,8 @@
 * Added support for ANSI codes in error output (#104)
 * Added all dxc target versions (#110)
 * Added Mali offline compiler 7.6.0
+* All ASICs are now shown for RGA compiler (#108)
+* Update DXC compiler (#107)
 
 ## 2022-02-02
 
