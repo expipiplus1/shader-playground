@@ -1,5 +1,11 @@
 # Changelog
 
+## 2022-07-12
+
+* Added support for ANSI codes in error output (#104)
+* Added all dxc target versions (#110)
+* Added Mali offline compiler 7.6.0
+
 ## 2022-02-02
 
 * Added RGA 2.6 (which enables DX12 offline mode)

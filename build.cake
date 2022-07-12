@@ -187,33 +187,39 @@ Task("Download-Mali-Offline-Compiler")
       true,
       "Mali_Offline_Compiler_v6.2.0/**/*.*");
 
-    // Doesn't actually work because this URL requires login.
-    var armMobileStudioExePath = DownloadCompiler(
-      "https://silver.arm.com/download/Development_Tools/Arm_Mobile_Studio/DSHVE-BN-00003-r21p0-00rel0/Arm_Mobile_Studio_2021.0_windows.exe",
-      "arm-mobile-studio",
-      "2021.0",
-      true);
+    void DownloadMali(string mobileStudioVersion, string maliVersion, string url)
+    {
+      var armMobileStudioExePath = DownloadCompiler(
+        url,
+        "arm-mobile-studio",
+        mobileStudioVersion,
+        true);
 
-    var mobileStudioFolder = "./build/arm-mobile-studio/2021.0";
-    EnsureDirectoryExists(mobileStudioFolder);
-    CleanDirectory(mobileStudioFolder);
+      var mobileStudioFolder = $"./build/arm-mobile-studio/{mobileStudioVersion}";
+      EnsureDirectoryExists(mobileStudioFolder);
+      CleanDirectory(mobileStudioFolder);
 
-    RunAndCheckResult(
-      @"C:\Program Files\7-Zip\7z.exe",
-      new ProcessSettings
-      {
-        Arguments = $@"x -o""{mobileStudioFolder}"" ""{armMobileStudioExePath}"" ""mali_offline_compiler/*"" ""mali_offline_compiler/*/*"""
+      RunAndCheckResult(
+        @"C:\Program Files\7-Zip\7z.exe",
+        new ProcessSettings
+        {
+          Arguments = $@"x -o""{mobileStudioFolder}"" ""{armMobileStudioExePath}"" ""mali_offline_compiler/*"" ""mali_offline_compiler/*/*"""
+        });
+
+      var binariesFolder = $"./src/ShaderPlayground.Core/Binaries/mali/{maliVersion}";
+
+      EnsureDirectoryExists(binariesFolder);
+      CleanDirectory(binariesFolder);
+      CopyFiles($"{mobileStudioFolder}/mali_offline_compiler/**/*.*", binariesFolder, true);
+      DeleteDirectory(mobileStudioFolder, new DeleteDirectorySettings {
+        Recursive = true,
+        Force = true
       });
+    }
 
-    var binariesFolder = $"./src/ShaderPlayground.Core/Binaries/mali/7.3.0";
-
-    EnsureDirectoryExists(binariesFolder);
-    CleanDirectory(binariesFolder);
-    CopyFiles($"{mobileStudioFolder}/mali_offline_compiler/**/*.*", binariesFolder, true);
-    DeleteDirectory(mobileStudioFolder, new DeleteDirectorySettings {
-      Recursive = true,
-      Force = true
-    });
+    // Can't actually download in this script because the actual URLs require login.
+    DownloadMali("2021.0", "7.3.0", "TODO");
+    DownloadMali("2022.1", "7.6.0", "TODO");
   });
 
 Task("Download-Metal-Developer-Tools")
