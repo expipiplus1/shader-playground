@@ -5,6 +5,7 @@
 * Updated glslang to latest trunk (#112)
 * Added Metal compiler 3.0 beta 4 (#111)
 * Added Slang compiler v0.24.20 (#111)
+* Added RGA 2.6.2
 
 ## 2022-07-12
 
