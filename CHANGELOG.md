@@ -1,5 +1,9 @@
 # Changelog
 
+## 2022-09-19
+
+* Updated glslang to latest trunk (#112)
+
 ## 2022-07-12
 
 * Added support for ANSI codes in error output (#104)

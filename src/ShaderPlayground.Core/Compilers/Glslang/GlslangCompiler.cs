@@ -45,6 +45,8 @@ namespace ShaderPlayground.Core.Compilers.Glslang
 
         private const string TargetVulkan1_0 = "Vulkan 1.0";
         private const string TargetVulkan1_1 = "Vulkan 1.1";
+        private const string TargetVulkan1_2 = "Vulkan 1.2";
+        private const string TargetVulkan1_3 = "Vulkan 1.3";
         private const string TargetOpenGL = "OpenGL";
         private const string TargetSpirV1_0 = "spirv1.0";
         private const string TargetSpirV1_1 = "spirv1.1";
@@ -52,11 +54,14 @@ namespace ShaderPlayground.Core.Compilers.Glslang
         private const string TargetSpirV1_3 = "spirv1.3";
         private const string TargetSpirV1_4 = "spirv1.4";
         private const string TargetSpirV1_5 = "spirv1.5";
+        private const string TargetSpirV1_6 = "spirv1.6";
 
         private static readonly string[] TargetOptions =
         {
             TargetVulkan1_0,
             TargetVulkan1_1,
+            TargetVulkan1_2,
+            TargetVulkan1_3,
             TargetOpenGL,
             TargetSpirV1_0,
             TargetSpirV1_1,
@@ -64,6 +69,7 @@ namespace ShaderPlayground.Core.Compilers.Glslang
             TargetSpirV1_3,
             TargetSpirV1_4,
             TargetSpirV1_5,
+            TargetSpirV1_6,
         };
 
         public ShaderCompilerResult Compile(ShaderCode shaderCode, ShaderCompilerArguments arguments, List<ShaderCompilerArguments> previousCompilerArguments)
@@ -80,6 +86,14 @@ namespace ShaderPlayground.Core.Compilers.Glslang
 
                 case TargetVulkan1_1:
                     targetOption = "--target-env vulkan1.1";
+                    break;
+
+                case TargetVulkan1_2:
+                    targetOption = "--target-env vulkan1.2";
+                    break;
+
+                case TargetVulkan1_3:
+                    targetOption = "--target-env vulkan1.3";
                     break;
 
                 case TargetOpenGL:
@@ -108,6 +122,10 @@ namespace ShaderPlayground.Core.Compilers.Glslang
 
                 case TargetSpirV1_5:
                     targetOption = "--target-env spirv1.5 -V";
+                    break;
+
+                case TargetSpirV1_6:
+                    targetOption = "--target-env spirv1.6 -V";
                     break;
             }
 
