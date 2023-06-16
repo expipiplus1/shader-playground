@@ -171,7 +171,7 @@ Task("Download-Dxc")
 Task("Download-Glslang")
   .Does(() => {
     DownloadAndUnzipCompiler(
-      "https://github.com/KhronosGroup/glslang/releases/download/master-tot/glslang-master-windows-x64-Release.zip",
+      "https://github.com/KhronosGroup/glslang/releases/download/main-tot/glslang-master-windows-Release.zip",
       "glslang",
       "trunk",
       false,
