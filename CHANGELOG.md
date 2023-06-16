@@ -1,5 +1,9 @@
 # Changelog
 
+## 2023-06-16
+
+* Added Metal Shader Converter
+
 ## 2022-09-19
 
 * Updated glslang to latest trunk (#112)

@@ -61,6 +61,7 @@ namespace ShaderPlayground.Core
             new MaliCompiler(),
             new MetalCompiler(),
             new MetalLibCompiler(),
+            new MetalShaderConverter(),
             new MinizCompiler(),
             new NagaCompiler(),
             new PowerVRCompiler(),
