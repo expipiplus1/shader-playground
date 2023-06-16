@@ -4,6 +4,7 @@
 
 * Added Metal Shader Converter
 * Added RGA 2.7.1
+* Updated DXC compiler
 
 ## 2022-09-19
 

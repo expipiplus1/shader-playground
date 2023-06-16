@@ -161,7 +161,7 @@ Task("Prepare-Build-Directory")
 Task("Download-Dxc")
   .Does(() => {
     DownloadAndUnzipCompiler(
-      "https://ci.appveyor.com/api/projects/antiagainst/directxshadercompiler/artifacts/build%2FRelease%2Fdxc-artifacts.zip?branch=master&pr=false&job=Image%3A%20Visual%20Studio%202017",
+      "https://ci.appveyor.com/api/projects/dnovillo/directxshadercompiler/artifacts/build%2FRelease%2Fdxc-artifacts.zip?branch=main&pr=false&job=image%3A%20Visual%20Studio%202022",
       "dxc",
       "trunk",
       false,
