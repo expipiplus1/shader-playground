@@ -3,6 +3,7 @@
 ## 2023-06-16
 
 * Added Metal Shader Converter
+* Added RGA 2.7.1
 
 ## 2022-09-19
 
