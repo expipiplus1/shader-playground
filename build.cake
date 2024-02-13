@@ -395,6 +395,7 @@ Task("Download-Slang")
     DownloadSlang("0.18.0");
     DownloadSlang("0.18.25");
     DownloadSlang("0.24.20");
+    DownloadSlang("2024.0.6");
   });
 
 Task("Download-HLSLParser")
