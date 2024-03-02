@@ -1,5 +1,9 @@
 # Changelog
 
+## 2024-02-13
+
+Updated Slang compiler to v2024.0.6
+
 ## 2023-06-16
 
 * Added Metal Shader Converter
