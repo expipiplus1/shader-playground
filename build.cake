@@ -599,37 +599,77 @@ Task("Build-Rust-GPU")
 
 Task("Build-Naga")
   .Does(() => {
-    const string repoPath = "./build/naga";
-    if (DirectoryExists(repoPath))
+    void BuildNagaLegacy()
     {
-      DeleteDirectory(repoPath, new DeleteDirectorySettings { Recursive = true });
-    }
-    GitClone("https://github.com/gfx-rs/naga.git", repoPath);
+      const string repoPath = "./build/naga-legacy";
+      if (DirectoryExists(repoPath))
+      {
+        DeleteDirectory(repoPath, new DeleteDirectorySettings { Recursive = true });
+      }
+      GitClone("https://github.com/gfx-rs/naga.git", repoPath);
 
-    void BuildVersion(string commit, string displayName)
+      void BuildVersion(string commit, string displayName)
+      {
+        GitCheckout(repoPath, commit);
+
+        RunAndCheckResult(
+          "cargo",
+          new ProcessSettings
+          {
+            Arguments = "build --release",
+            WorkingDirectory = repoPath,
+          });
+
+        var binariesFolder = $"./src/ShaderPlayground.Core/Binaries/naga/{displayName}";
+        EnsureDirectoryExists(binariesFolder);
+        CleanDirectory(binariesFolder);
+
+        CopyFiles(
+          $"{repoPath}/target/release/naga.*",
+          binariesFolder,
+          false);
+      }
+
+      BuildVersion("8376bab5622f89ed9689cd0c3aedfd97c333c5bf", "v0.5.0");
+      BuildVersion("3a2f7e611e4fe8ec50d9bb365916f22e7c30e46c", "v0.7.0");
+    }
+
+    void BuildNaga()
     {
-      GitCheckout(repoPath, commit);
+      const string repoPath = "./build/naga";
+      if (DirectoryExists(repoPath))
+      {
+        DeleteDirectory(repoPath, new DeleteDirectorySettings { Recursive = true });
+      }
+      GitClone("https://github.com/gfx-rs/wgpu.git", repoPath);
 
-      RunAndCheckResult(
-        "cargo",
-        new ProcessSettings
-        {
-          Arguments = "build --release",
-          WorkingDirectory = repoPath,
-        });
+      void BuildVersion(string tag)
+      {
+        GitCheckout(repoPath, tag);
 
-      var binariesFolder = $"./src/ShaderPlayground.Core/Binaries/naga/{displayName}";
-      EnsureDirectoryExists(binariesFolder);
-      CleanDirectory(binariesFolder);
+        RunAndCheckResult(
+          "cargo",
+          new ProcessSettings
+          {
+            Arguments = "build --release",
+            WorkingDirectory = $"{repoPath}/naga-cli",
+          });
 
-      CopyFiles(
-        "./build/naga/target/release/naga.*",
-        binariesFolder,
-        false);
+        var binariesFolder = $"./src/ShaderPlayground.Core/Binaries/naga/{tag}";
+        EnsureDirectoryExists(binariesFolder);
+        CleanDirectory(binariesFolder);
+
+        CopyFiles(
+          $"{repoPath}/target/release/naga.*",
+          binariesFolder,
+          false);
+      }
+
+      BuildVersion("v0.19.3");
     }
 
-    BuildVersion("8376bab5622f89ed9689cd0c3aedfd97c333c5bf", "v0.5.0");
-    BuildVersion("3a2f7e611e4fe8ec50d9bb365916f22e7c30e46c", "v0.7.0");
+    BuildNagaLegacy();
+    BuildNaga();
   });
 
 Task("Build-Fxc-Shim")

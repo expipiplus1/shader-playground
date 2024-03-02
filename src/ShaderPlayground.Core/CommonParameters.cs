@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using NuGet.Versioning;
 
 namespace ShaderPlayground.Core
 {
@@ -63,6 +64,24 @@ namespace ShaderPlayground.Core
             var versions = versionDirectories
                 .Select(x => x.Name)
                 .ToArray();
+
+            // When version directories follow semantic versioning rules (which they mostly do),
+            // then sort them by semantic version.
+            Array.Sort(versions, (x, y) =>
+            {
+                x = x.TrimStart('v');
+                y = y.TrimStart('v');
+
+                if (SemanticVersion.TryParse(x, out var semanticX))
+                {
+                    if (SemanticVersion.TryParse(y, out var semanticY))
+                    {
+                        return semanticX.CompareTo(semanticY);
+                    }
+                }
+
+                return x.CompareTo(y);
+            });
 
             var trunkDescription = string.Empty;
             var trunkVersion = versionDirectories.FirstOrDefault(x => x.Name == "trunk");

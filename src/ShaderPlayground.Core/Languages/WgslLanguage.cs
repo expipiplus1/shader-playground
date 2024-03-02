@@ -9,10 +9,10 @@
         public string FileExtension { get; } = "wgsl";
 
         private static readonly string DefaultWgslCode = @"struct VertexOutput {
-    [[builtin(position)]] position: vec4<f32>;
+    @builtin(position) position: vec4<f32>,
 };
 
-[[stage(vertex)]]
+@vertex
 fn vertex() -> VertexOutput {
     return VertexOutput(vec4<f32>(1.0));
 }

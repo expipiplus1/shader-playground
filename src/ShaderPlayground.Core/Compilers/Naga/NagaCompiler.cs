@@ -9,8 +9,8 @@ namespace ShaderPlayground.Core.Compilers.Naga
     {
         public string Name { get; } = CompilerNames.Naga;
         public string DisplayName { get; } = "Naga";
-        public string Url { get; } = "https://github.com/gfx-rs/naga";
-        public string Description { get; } = "The shader translation library for the needs of wgpu and gfx-rs projects.";
+        public string Url { get; } = "https://github.com/gfx-rs/wgpu";
+        public string Description { get; } = "The shader translation library for the needs of wgpu.";
 
         public string[] InputLanguages { get; } = { LanguageNames.SpirV, LanguageNames.Wgsl, LanguageNames.Glsl };
 
