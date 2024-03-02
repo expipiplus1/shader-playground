@@ -1,8 +1,10 @@
 # Changelog
 
-## 2024-02-13
+## 2024-03-02
 
-Updated Slang compiler to v2024.0.6
+* Updated Tint compiler (#114)
+* Added Naga compiler v0.19.3
+* Added Slang compiler v2024.0.6 (#117)
 
 ## 2023-06-16
 
