@@ -34,7 +34,8 @@ namespace ShaderPlayground.Core.Compilers.Tint
                 LanguageNames.SpirvAssembly,
                 LanguageNames.Wgsl,
                 LanguageNames.Metal,
-                LanguageNames.Hlsl
+                LanguageNames.Hlsl,
+                LanguageNames.Glsl
             })
         };
 
@@ -115,6 +116,9 @@ namespace ShaderPlayground.Core.Compilers.Tint
                     break;
                 case LanguageNames.Hlsl:
                     args.Add("--format hlsl");
+                    break;
+                case LanguageNames.Glsl:
+                    args.Add("--format glsl");
                     break;
             }
 
