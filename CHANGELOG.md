@@ -1,5 +1,10 @@
 # Changelog
 
+## 2024-03-03
+
+* Added Metal compiler 4.1
+* Added Metal shader converter 1.1
+
 ## 2024-03-02
 
 * Updated Tint compiler (#114)

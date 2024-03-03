@@ -72,6 +72,9 @@ namespace ShaderPlayground.Core
                 x = x.TrimStart('v');
                 y = y.TrimStart('v');
 
+                x = x == "beta" ? "1.0-beta" : x;
+                y = y == "beta" ? "1.0-beta" : y;
+
                 if (SemanticVersion.TryParse(x, out var semanticX))
                 {
                     if (SemanticVersion.TryParse(y, out var semanticY))

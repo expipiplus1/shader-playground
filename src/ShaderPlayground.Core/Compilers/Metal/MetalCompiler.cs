@@ -17,7 +17,7 @@ namespace ShaderPlayground.Core.Compilers.Metal
         public ShaderCompilerParameter[] Parameters { get; } =
         {
             CommonParameters.CreateVersionParameter("metal"),
-            new ShaderCompilerParameter("MetalVersion", "Metal Language Version", ShaderCompilerParameterType.ComboBox, MetalVersions, "metal3.0"),
+            new ShaderCompilerParameter("MetalVersion", "Metal Language Version", ShaderCompilerParameterType.ComboBox, MetalVersions, "metal3.1"),
             CommonParameters.CreateOutputParameter(new[] { LanguageNames.MetalIR }),
         };
 
@@ -40,6 +40,7 @@ namespace ShaderPlayground.Core.Compilers.Metal
             "ios-metal2.3",
             "ios-metal2.4",
             "metal3.0",
+            "metal3.1",
         };
 
         public ShaderCompilerResult Compile(ShaderCode shaderCode, ShaderCompilerArguments arguments, List<ShaderCompilerArguments> previousCompilerArguments)
