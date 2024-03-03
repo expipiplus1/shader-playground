@@ -68,9 +68,10 @@ Shader Playground is supported by these amazing people. Their sponsorship allows
 * [Neil Henning](http://www.duskborn.com)
 <!-- -->
 * [Laura Reznikov](https://twitter.com/theanimator)
-* [Aisha Brown](https://twitter.com/aishization)
 * [Sean Cooper](https://kornnerstudios.blogspot.com/)
-* [Ken Hu](https://silvesthu.github.io/)
+* [Inês Almeida](https://github.com/britalmeida)
+* [Tom Forsyth](http://eelpi.gotdns.org/)
+* [Joel de Vahl](https://github.com/joeldevahl)
 
 ## Author
 
